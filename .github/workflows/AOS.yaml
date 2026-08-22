@@ -75,7 +75,7 @@ jobs:
     needs: verify-and-build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:
-      name: github-pages
+      name: gh-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
@@ -92,7 +92,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:
       name: cloud-production
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Download Build Artifact
