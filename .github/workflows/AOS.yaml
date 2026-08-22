@@ -1,0 +1,138 @@
+name: Production Multi-Target Pipeline (Verify, Artifacts, Environments)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+# Permissions required for deployments and GitHub Pages token generation
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  deployments: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # -------------------------------------------------------------
+  # JOB 1: LINT, TEST, LOCALHOST VERIFICATION & ARTIFACT BUILD
+  # -------------------------------------------------------------
+  verify-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Project Dependencies
+        run: npm ci
+
+      - name: Run Linter Checks
+        run: npm run lint --if-present
+
+      - name: Run Unit Tests
+        run: npm test --if-present
+
+      - name: Build Static Files
+        run: npm run build
+
+      # Localhost End-to-End Verification
+      - name: Verify Bundle on Localhost Endpoint
+        run: |
+          npx vite preview --port 8080 &
+          sleep 3
+          curl -f http://localhost:8080 || exit 1
+
+      # Artifact Action 1: Upload for GitHub Pages Engine
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      # Artifact Action 2: Upload Generic Production Build for Downstream Deployments
+      - name: Upload Production Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build-dist
+          path: ./dist
+          retention-days: 7
+
+  # -------------------------------------------------------------
+  # JOB 2: DEPLOY TO GITHUB PAGES
+  # -------------------------------------------------------------
+  deploy-github-pages:
+    needs: verify-and-build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+  # -------------------------------------------------------------
+  # JOB 3: DEPLOY TO CLOUD (Vercel / Netlify)
+  # -------------------------------------------------------------
+  deploy-cloud:
+    needs: verify-and-build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: cloud-production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build-dist
+          path: ./dist
+
+      - name: Install Vercel CLI Requirement
+        run: npm install -g vercel
+
+      - name: Deploy to Cloud Provider
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel deploy --prebuilt --token=$VERCEL_TOKEN --prod
+
+  # -------------------------------------------------------------
+  # JOB 4: DEPLOY TO WEB4 / DECENTRALIZED IPFS NETWORK
+  # -------------------------------------------------------------
+  deploy-web4:
+    needs: verify-and-build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: web4-ipfs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build-dist
+          path: ./dist
+
+      # Deploy using Web4 IPFS Deployment Action
+      - name: Deploy Build to Web4 IPFS Gateway
+        uses: ipshipyard/ipfs-deploy-action@v1
+        with:
+          path-to-deploy: './dist'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pinata-api-key: ${{ secrets.PINATA_API_KEY }}
+          pinata-secret-api-key: ${{ secrets.PINATA_SECRET_API_KEY }}
