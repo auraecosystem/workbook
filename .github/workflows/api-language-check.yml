@@ -1,0 +1,26 @@
+name: Verify GitHub API Language Breakdown
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  verify-api-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query GitHub Languages API
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch language byte counts from GitHub API
+          RESPONSE=$(gh api repos/${{ github.repository }}/languages)
+          echo "API Response: $RESPONSE"
+          
+          # Check if xBase is returned in the API output
+          HAS_XBASE=$(echo "$RESPONSE" | grep -i '"xBase"' || true)
+          
+          if [ -n "$HAS_XBASE" ]; then
+            echo "::warning title=Language Mismatch::xBase is still reported in GitHub API stats. Verify .gitattributes configuration."
+          else
+            echo "Success: xBase is not present in GitHub language statistics."
+          fi
