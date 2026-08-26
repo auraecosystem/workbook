@@ -1,24 +1,18 @@
-# Exclude auto-generated HTML files from language statistics
-*.html linguist-vendored
-
-# Exclude notebooks from primary language counts
-*.ipynb linguist-documentation
-
-# Reassign misclassified file extensions (e.g., .prg files)
-*.prg linguist-language=Text
-z# Vendor generated HTML files so they don't count as source code
-*.html linguist-vendored
-
-# Reclassify notebooks as documentation assets
-*.ipynb linguist-documentation
-
-# Reassign misidentified dataset file extensions
-*.dbf linguist-language=Text
-*.prg linguist-language=Text
-# Stop Linguist from counting header/data files as xBase
+# Fix xBase misclassifications (.ch, .prg, .dbf)
 *.ch linguist-language=C
 *.prg linguist-language=Text
 *.dbf linguist-vendored
 
-# Ignore misclassified SystemVerilog files if they are not hardware code
+# Fix SystemVerilog misclassifications (.sv)
 *.sv linguist-language=Text
+
+# Exclude auto-generated HTML reports and web output
+*.html linguist-vendored
+
+# Treat Jupyter Notebooks as documentation rather than primary source code
+*.ipynb linguist-documentation
+
+# Ignore entire directories (if applicable)
+dist/* linguist-vendored
+build/* linguist-vendored
+docs/* linguist-documentation
