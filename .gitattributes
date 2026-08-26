@@ -6,3 +6,12 @@
 
 # Reassign misclassified file extensions (e.g., .prg files)
 *.prg linguist-language=Text
+z# Vendor generated HTML files so they don't count as source code
+*.html linguist-vendored
+
+# Reclassify notebooks as documentation assets
+*.ipynb linguist-documentation
+
+# Reassign misidentified dataset file extensions
+*.dbf linguist-language=Text
+*.prg linguist-language=Text
