@@ -26,3 +26,10 @@ alias y="pnpm --dir frontend i && pnpm --dir frontend dev"
   /model - choose what model and reasoning effort to use
   /review - review any changes and find issues
       
+curl -X 'POST' \
+  'http://127.0.0.1:8000/predict' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "feature_1": 0.45,
+    "feature_2": 1.28
+  }'
