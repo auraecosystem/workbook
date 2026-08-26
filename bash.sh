@@ -1,6 +1,7 @@
+codex mcp add hf-mcp-server --url "https://huggingface.co/mcp?login"
 docker run --init \
   --name bytebase\
-  --publish 8080:8080 \
+  --publish 8080:8000 \
   --volume ~/.bytebase/data:/var/opt/bytebase \
   bytebase/bytebase:latest
   # Setup a postgres database with user bbdev and database bbdev
