@@ -15,3 +15,10 @@ z# Vendor generated HTML files so they don't count as source code
 # Reassign misidentified dataset file extensions
 *.dbf linguist-language=Text
 *.prg linguist-language=Text
+# Stop Linguist from counting header/data files as xBase
+*.ch linguist-language=C
+*.prg linguist-language=Text
+*.dbf linguist-vendored
+
+# Ignore misclassified SystemVerilog files if they are not hardware code
+*.sv linguist-language=Text
