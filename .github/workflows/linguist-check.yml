@@ -1,0 +1,31 @@
+name: Validate Repository Language Stats
+
+on:
+  push:
+    branches: [ main, gh.io ]
+  pull_request:
+    branches: [ main, gh.io ]
+
+jobs:
+  check-languages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run GitHub Linguist Breakdown
+        id: linguist
+        run: |
+          # Run official Linguist container on the repository directory
+          OUTPUT=$(docker run --rm -v ${{ github.workspace }}:${{ github.workspace }} -w ${{ github.workspace }} ghcr.io/github-linguist/linguist:latest github-linguist --breakdown)
+          
+          echo "=== Linguist Language Breakdown ==="
+          echo "$OUTPUT"
+          
+          # Fail CI if 'xBase' is detected in the repository output
+          if echo "$OUTPUT" | grep -i "xBase"; then
+            echo "Error: Unwanted 'xBase' classification detected in codebase!"
+            exit 1
+          else
+            echo "Language validation passed!"
+          fi
