@@ -33,3 +33,20 @@ curl -X 'POST' \
     "feature_1": 0.45,
     "feature_2": 1.28
   }'
+
+cat << 'EOF' > .gitattributes
+# Remap header/script extensions
+*.ch linguist-language=C
+*.prg linguist-language=Text
+*.dbf linguist-vendored
+*.sv linguist-language=Text
+
+# Exclude generated HTML reports and notebooks from stats
+*.html linguist-vendored
+*.ipynb linguist-documentation
+EOF
+
+# Commit and push to GitHub
+git add .gitattributes
+git commit -m "fix: configure .gitattributes to fix language stats"
+git push origin main
