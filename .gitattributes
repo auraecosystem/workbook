@@ -1,0 +1,8 @@
+# Exclude auto-generated HTML files from language statistics
+*.html linguist-vendored
+
+# Exclude notebooks from primary language counts
+*.ipynb linguist-documentation
+
+# Reassign misclassified file extensions (e.g., .prg files)
+*.prg linguist-language=Text
