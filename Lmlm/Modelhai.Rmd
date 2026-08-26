@@ -2594,6 +2594,7 @@ class ProductionLMLMOrchestrator:
         failed_obs = len([o for o in trace.observations if not o.success])
         logger.info(f"Task Metrics -> Steps: {total_steps}, Errors: {failed_obs}")
 Canonical Roadmap & Build Sequence
+;
 LMLM Canonical Roadmap
 ├── v1.0 — Core Runtime (Task -> State -> DAG Planner -> Policy Engine -> Async Tool Execution -> Verifier)
 ├── v1.1 — Model Adapter Engine (Async OpenAI, Anthropic, Ollama, vLLM, local GGUF)
@@ -2602,4 +2603,3 @@ LMLM Canonical Roadmap
 ├── v1.4 — LMLM-CODEX Engine (Isolated sandboxing, AST refactoring, dynamic debugging, CI/CD runners)
 ├── v1.5 — Multimodal Fusion Layer (Unified context across Text, Image, Audio, Video, AST)
 └── v2.0 — Adaptive Intelligence Runtime (Dynamic model routing, dynamic context, self-evaluation)
-
