@@ -16,8 +16,11 @@ jobs:
       - name: Run GitHub Linguist Breakdown
         id: linguist
         run: |
-          # Run official Linguist container on the repository directory
-          OUTPUT=$(docker run --rm -v ${{ github.workspace }}:${{ github.workspace }} -w ${{ github.workspace }} ghcr.io/github-linguist/linguist:latest github-linguist --breakdown)
+          # Install Linguist
+          gem install github-linguist
+          
+          # Run Linguist on the repository directory
+          OUTPUT=$(github-linguist --breakdown)
           
           echo "=== Linguist Language Breakdown ==="
           echo "$OUTPUT"
