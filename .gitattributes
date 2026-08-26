@@ -1,3 +1,62 @@
+Ошибка: The object can not be found here.
+
+Стек вызовов:
+removeChild@[native code]
+i7@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:109900
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111470
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111722
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111722
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:116148
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111722
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:116148
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111722
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:116148
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111722
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111722
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:113904
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:116148
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111722
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:116148
+ur@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111596
+ua@https://qubu.ai/_next/static/chunks/024519add5d4b953.js:2:111722
+
+Время: 2026-08-26T12:07:36.639Z
+
+URL: https://qubu.ai/home/dev/notebooks/5b8604f5-3381-4096-94d6-944a8639b1b6
+
+User Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 27_0_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/152.0.7977.53 Mobile/15E148 Safari/604.1
 # Fix xBase misclassifications (.ch, .prg, .dbf)
 *.ch linguist-language=C
 *.prg linguist-language=Text
