@@ -1,1 +1,61 @@
+# Aura workbook schema (YAML)
+# Version this file when you change sheets/columns
+schema_version: 1
 
+workbook_name_patterns:
+  - Aura.xlsx
+  - Aura.xlsl
+
+sheets:
+  Overview:
+    required: true
+    columns:
+      - {name: Section, type: string, required: true}
+      - {name: Details, type: string, required: true}
+
+  Data:
+    required: true
+    columns:
+      - {name: ID, type: integer, required: true}
+      - {name: Name, type: string, required: true}
+      - {name: Value, type: number, required: true}
+      - {name: Category, type: string, required: false}
+
+  AI_Input:
+    required: false
+    columns:
+      - {name: Feature1, type: number, required: true}
+      - {name: Feature2, type: number, required: true}
+      - {name: Label, type: string, required: true}
+
+  Quantum_Input:
+    required: false
+    columns:
+      - {name: Qubit, type: integer, required: true}
+      - {name: Gate, type: string, required: true}
+      - {name: Parameter, type: string, required: false}
+
+  Results:
+    required: false
+    columns:
+      - {name: Run, type: integer, required: true}
+      - {name: Method, type: string, required: true}
+      - {name: Accuracy, type: number, required: false}
+      - {name: Gene, type: string, required: true}
+      - {name: Mutation, type: string, required: false}
+      - {name: Expression_Level, type: number, required: false}
+
+  AI_Pipeline_Config:
+    required: false
+    columns:
+      - {name: Model, type: string, required: true}
+      - {name: Hyperparameters, type: string, required: false}
+      - {name: Status, type: string, required: false}
+
+  Quantum_Results:
+    required: false
+    columns:
+      - {name: Run, type: integer, required: true}
+      - {name: Circuit, type: string, required: true}
+      - {name: Energy, type: number, required: false}
+      - {name: Notes, type: string, required: false}
