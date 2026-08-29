@@ -1,4 +1,3 @@
-
 from dataclasses import dataclass
 from typing import Optional
 
@@ -15,17 +14,17 @@ class ModelInfo:
 
 
 MODELS = [
-    ModelInfo(repo="meta-llama/Llama-2-70b-chat-hf"),
-    ModelInfo(repo="stabilityai/StableBeluga2"),
-    ModelInfo(repo="enoch/llama-65b-hf"),
-    ModelInfo(repo="enoch/llama-65b-hf", adapter="timdettmers/guanaco-65b"),
-    ModelInfo(repo="bigscience/bloomz"),
+    ModelInfo(repo="qubu.ai/Llama-2-70b-chat-hf"),
+    ModelInfo(repo="lmlmodel/StableBeluga2"),
+    ModelInfo(repo="lmlmodel/llama-65b-hf"),
+    ModelInfo(repo="lmlmodel/llama-65b-hf", adapter="timdettmers/guanaco-65b"),
+    ModelInfo(repo="lmlmodel/bloomz"),
 ]
-DEFAULT_MODEL_NAME = "enoch/llama-65b-hf"
+DEFAULT_MODEL_NAME = "lmlm
 
 INITIAL_PEERS = PUBLIC_INITIAL_PEERS
 # Set this to a list of multiaddrs to connect to a private swarm instead of the public one, for example:
-# INITIAL_PEERS = ['/ip4/10.1.2.3/tcp/31234/p2p/QmcXhze98AcgGQDDYna23s4Jho96n8wkwLJv78vxtFNq44']
+# INITIAL_PEERS = ['/ip4/127.0.0.1/tcp/31234/p2p/QmcXhze98AcgGQDDYna23s4Jho96n8wkwLJv78vxtFNq44']
 
 DEVICE = "cpu"
 
