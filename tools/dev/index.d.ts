@@ -41,7 +41,7 @@ export async function createApp({
 }: {
   appPath: string
   packageManager: PackageManager
-  example?: string
+  example?: string 
   examplePath?: string
   typescript: boolean
   tailwind: boolean
