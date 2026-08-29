@@ -6,7 +6,6 @@
 python -m pip install --upgrade pip
 pip install -r requirements.txt pytest
 pytest -q
-
 ```
 
 (Prepares the Python environment and executes initial test suites.)
@@ -15,7 +14,6 @@ pytest -q
 
 ```bash
 python -c "from src.file_loader import validate_workbook; import json; ok, r = validate_workbook('data/Aura.xlsl'); print(json.dumps(r, indent=2))"
-
 ```
 
 (Validates the multi-dimensional `.xlsl` file structure against the canonical system schema.)
@@ -24,7 +22,6 @@ python -c "from src.file_loader import validate_workbook; import json; ok, r = v
 
 ```bash
 aura data/Aura.xlsl
-
 ```
 
 (Points the task manager to the target work-paper to initialize multi-agent handoffs, run sub-workers, and record state outputs.)
@@ -72,10 +69,8 @@ Initializing sub-agent execution targeting the **Tensor Optimization Engine** an
 ```bash
 # 1. Update workbook schema & dependencies
 pip install pandas openpyxl numpy scikit-learn qiskit pytest pyyaml[cite: 6]
-
 # 2. Execute targeted AI & Quantum sub-agent pipeline
 python examples/run_demo.py[cite: 6]
-
 ```
 
 ---
@@ -86,7 +81,6 @@ python examples/run_demo.py[cite: 6]
 from pathlib import Path
 import pandas as pd
 from src.file_loader import load_workbook, validate_workbook[cite: 6]
-
 DATA_PATH = Path("data/Aura.xlsl")[cite: 6]
 
 # Validate schema integrity before agent execution
@@ -123,7 +117,6 @@ with pd.ExcelWriter(DATA_PATH, engine="openpyxl") as writer:[cite: 6]
         df.to_excel(writer, sheet_name=sheet_name, index=False)[cite: 6]
 
 print("Successfully executed sub-agent and updated data/Aura.xlsl results layer.")[cite: 2, 6]
-
 ```
  `^|D`tune specific quantum circuit parameters inside `Quantum_Input` before launching the solver?
 
