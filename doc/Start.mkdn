@@ -125,4 +125,105 @@ with pd.ExcelWriter(DATA_PATH, engine="openpyxl") as writer:[cite: 6]
 print("Successfully executed sub-agent and updated data/Aura.xlsl results layer.")[cite: 2, 6]
 
 ```
- ^|Dtune specific quantum circuit parameters inside `Quantum_Input` before launching the solver?
+ `^|D`tune specific quantum circuit parameters inside `Quantum_Input` before launching the solver?
+
+The `schema/aura_schema.yaml` file defines the canonical specification and validation rules for all sheets, columns, data types, and required fields within `.xlsl` and `.xlsx` workbooks.
+
+```yaml
+# Aura workbook schema (YAML)
+# Version this file when you change sheets/columns
+schema_version: 1
+
+workbook_name_patterns:
+  - Aura.xlsx
+  - Aura.xlsl
+
+sheets:
+  Overview:
+    required: true
+    columns:
+      - {name: Section, type: string, required: true}
+      - {name: Details, type: string, required: true}
+
+  Data:
+    required: true
+    columns:
+      - {name: ID, type: integer, required: true}
+      - {name: Name, type: string, required: true}
+      - {name: Value, type: number, required: true}
+      - {name: Category, type: string, required: false}
+
+  AI_Input:
+    required: false
+    columns:
+      - {name: Feature1, type: number, required: true}
+      - {name: Feature2, type: number, required: true}
+      - {name: Label, type: string, required: true}
+
+  Quantum_Input:
+    required: false
+    columns:
+      - {name: Qubit, type: integer, required: true}
+      - {name: Gate, type: string, required: true}
+      - {name: Parameter, type: string, required: false}
+
+  Results:
+    required: false
+    columns:
+      - {name: Run, type: integer, required: true}
+      - {name: Method, type: string, required: true}
+      - {name: Accuracy, type: number, required: false}
+      - {name: Gene, type: string, required: true}
+      - {name: Mutation, type: string, required: false}
+      - {name: Expression_Level, type: number, required: false}
+
+  AI_Pipeline_Config:
+    required: false
+    columns:
+      - {name: Model, type: string, required: true}
+      - {name: Hyperparameters, type: string, required: false}
+      - {name: Status, type: string, required: false}
+
+  Quantum_Results:
+    required: false
+    columns:
+      - {name: Run, type: integer, required: true}
+      - {name: Circuit, type: string, required: true}
+      - {name: Energy, type: number, required: false}
+      - {name: Notes, type: string, required: false}
+
+```
+
+**Key Schema Layers & Pipeline Binding**
+
+| Sheet Name | Requirement Level | Primary Column Constraints | Runtime Role |
+| --- | --- | --- | --- |
+| **`Overview`** | Mandatory (`required: true`) | `Section` (string), `Details` (string) | Ingests core document metadata.
+
+ |
+| **`Data`** | Mandatory (`required: true`) | `ID` (int), `Name` (str), `Value` (num) | Base input dataset evaluated during execution.
+
+ |
+| **`AI_Input`** | Optional (`required: false`) | `Feature1` (num), `Feature2` (num), `Label` (str) | Consumed by machine learning sub-agents.
+
+ |
+| **`Quantum_Input`** | Optional (`required: false`) | `Qubit` (int), `Gate` (str), `Parameter` (str) | Specifies quantum circuit operators and registers.
+
+ |
+| **`AI_Pipeline_Config`** | Optional (`required: false`) | `Model` (str), `Hyperparameters` (str), `Status` (str) | Controls hyperparameter tuning and model parameters.
+
+ |
+| **`Results`** | Optional (`required: false`) | `Run` (int), `Method` (str), `Accuracy` (num) | Target sheet for mutated execution state outputs.
+
+ |
+
+**Schema Maintenance Protocol**
+
+* **Version Control:** Modifying or adding sheets/columns requires updating `schema/aura_schema.yaml` and incrementing `schema_version`.
+
+
+* **Contributor Instructions:** Collaborators must follow schema rules detailed in `CONTRIBUTING.md` when submitting PRs.
+
+
+* **Breaking Changes:** Destructive or breaking schema updates require instantiating a new file (e.g., `schema/aura_schema_v2.yaml`) and logging migration notes in `docs/schema-migrations.md`.
+* 
