@@ -75,3 +75,7 @@ User Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 27_0_0 like Mac OS X) AppleWebKit
 dist/* linguist-vendored
 build/* linguist-vendored
 docs/* linguist-documentation
+   *.prg linguist-vendored
+   *.dbf linguist-vendored
+   *.cdx linguist-vendored
+   *.dbt linguist-vendored
