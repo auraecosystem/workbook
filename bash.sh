@@ -89,3 +89,14 @@ With the codemod CLI you can run a workflow from the [Codemod Registry](https://
 
 ```bash
 npx codemod @nodejs/<recipe>
+# CUDA 13
+docker run -ti --name local-ai -p 8080:8080 --gpus all localai/localai:latest-gpu-nvidia-cuda-13
+
+# CUDA 12
+docker run -ti --name local-ai -p 8080:8080 --gpus all localai/localai:latest-gpu-nvidia-cuda-12
+
+# NVIDIA Jetson ARM64 (CUDA 12, for AGX Orin and similar)
+docker run -ti --name local-ai -p 8080:8080 --gpus all localai/localai:latest-nvidia-l4t-arm64
+
+# NVIDIA Jetson ARM64 (CUDA 13, for DGX Spark)
+docker run -ti --name local-ai -p 8080:8080 --gpus all localai/localai:latest-nvidia-l4t-arm64-cuda-13
