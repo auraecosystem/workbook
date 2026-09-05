@@ -27,7 +27,7 @@ pure_math = pd.DataFrame({
 equations",
 "Basic derivative rule",
 "Distribution of primes"
-]
+] 
 })
 pure_
 math.to
