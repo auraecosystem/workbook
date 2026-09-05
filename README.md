@@ -12,6 +12,8 @@ The **Aura Ecosystem Workbook** (`[https://github.com/auraecosystem/workbook](ht
 
 In traditional data workflows, documentation, data models, logic evaluation, and autonomous execution are fragmented across distinct tools. The Aura Workbook unifies these layers into a single **reactive, graph-based computational entity**. Built for **Web4 protocols, multi-agent artificial intelligence (AgbakoAI/Aura Engine), and logic programming frameworks**, the `.xlsl` workbook serves as both a human-readable research document and an executable machine engine.
 
+<img width="328" height="304" alt="image" src="https://github.com/user-attachments/assets/ced1bedb-3755-42ba-8731-9e81b2028cb1" />
+
 ```
        [ Classical Notebook / Spreadsheet ]           [ Aura Executable Paperweb (.xlsl) ]
     ┌────────────────────────────────────────┐     ┌────────────────────────────────────────┐
