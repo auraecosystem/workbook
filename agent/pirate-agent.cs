@@ -3,6 +3,7 @@
 #r "nuget: Microsoft.Agents.AI.Hosting"
 #r "nuget: Microsoft.Extensions.AI"
 
+    
 using Azure.AI.OpenAI;
 using Azure.Identity;
 using Microsoft.Agents.AI.Hosting;
