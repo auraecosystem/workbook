@@ -87,7 +87,6 @@ To run the transform scripts use [`codemod`](https://go.codemod.com/github) comm
 
 With the codemod CLI you can run a workflow from the [Codemod Registry](https://codemod.link/nodejs-official). Replace `<recipe>` with the name of the recipe you want to run:
 
-```bash
 npx codemod @nodejs/<recipe>
 # CUDA 13
 docker run -ti --name local-ai -p 8080:8080 --gpus all localai/localai:latest-gpu-nvidia-cuda-13
@@ -100,3 +99,13 @@ docker run -ti --name local-ai -p 8080:8080 --gpus all localai/localai:latest-nv
 
 # NVIDIA Jetson ARM64 (CUDA 13, for DGX Spark)
 docker run -ti --name local-ai -p 8080:8080 --gpus all localai/localai:latest-nvidia-l4t-arm64-cuda-13
+# From the model gallery (see available models with `local-ai models list` or at https://models.localai.io)
+local-ai run llama-3.2-1b-instruct:q4_k_m
+# From Huggingface
+local-ai run huggingface://lmlm/phi-2-GGUF/phi-2.Q8_0.gguf
+# From the Ollama OCI registry
+local-ai run ollama://gemma:2b
+# From a YAML config
+local-ai run https://gist.githubusercontent.com/.../phi-2.yaml
+# From a standard OCI registry (e.g., Docker Hub)
+local-ai run oci://localai/phi-2:latest
